@@ -80,15 +80,15 @@ class Program
         moduleBase = procMem.GetModuleBaseAddress(MODULE_NAME);
 
         // Watch rank (level)
-        MemoryWatcher<int> rankWatcher = new("Points", procMem, new HalfSwordGameMode_Offsets(moduleBase).CurrentPoints);
-        rankWatcher.ValueChanged += PointsChanged;
+        //MemoryWatcher<int> rankWatcher = new("Points", procMem, new HalfSwordGameMode_Offsets(moduleBase).CurrentPoints);
+        //rankWatcher.ValueChanged += PointsChanged;
 
         // Watch prestige
         MemoryWatcher<int> prestigeWatcher = new("Rank", procMem, new HalfSwordGameMode_Offsets(moduleBase).AvailableRank);
         prestigeWatcher.ValueChanged += RankChanged;
 
         // Add to update list
-        updatables.AddRange(rankWatcher, prestigeWatcher);
+        updatables.AddRange(prestigeWatcher);
 
         player = new Player(procMem, moduleBase);
         gameState = new GameState(procMem, moduleBase);
